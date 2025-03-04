@@ -126,7 +126,7 @@ export default function AddExpenseScreen() {
           <View style={styles.inputGroup}>
             <Text style={styles.label}>Amount</Text>
             <View style={styles.amountInputContainer}>
-              <DollarSign size={20} color="#666" style={styles.inputIcon} />
+              <DollarSign size={20} color="#555" style={styles.inputIcon} />
               <TextInput
                 style={styles.amountInput}
                 placeholder="0.00"

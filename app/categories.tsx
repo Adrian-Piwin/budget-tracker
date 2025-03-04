@@ -204,7 +204,7 @@ export default function CategoriesScreen() {
             value={editingCategory.name}
             onChangeText={(text) => setEditingCategory({...editingCategory, name: text})}
             placeholder="Category name"
-            placeholderTextColor="#666"
+            placeholderTextColor="#555"
           />
           <View style={styles.editCategoryBudgetContainer}>
             <DollarSign size={16} color="#666" />
@@ -214,7 +214,7 @@ export default function CategoriesScreen() {
               onChangeText={(text) => setEditingCategory({...editingCategory, monthly_budget: text})}
               keyboardType="decimal-pad"
               placeholder="0.00"
-              placeholderTextColor="#666"
+              placeholderTextColor="#555"
             />
           </View>
           <View style={styles.editCategoryActions}>
@@ -287,7 +287,7 @@ export default function CategoriesScreen() {
           <TextInput
             style={styles.addCategoryInput}
             placeholder="Category name"
-            placeholderTextColor="#666"
+            placeholderTextColor="#555"
             value={newCategoryName}
             onChangeText={setNewCategoryName}
           />
@@ -296,7 +296,7 @@ export default function CategoriesScreen() {
             <TextInput
               style={styles.budgetInput}
               placeholder="Monthly budget"
-              placeholderTextColor="#666"
+              placeholderTextColor="#555"
               value={newCategoryBudget}
               onChangeText={setNewCategoryBudget}
               keyboardType="decimal-pad"

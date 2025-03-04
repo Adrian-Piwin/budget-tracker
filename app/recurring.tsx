@@ -282,7 +282,7 @@ export default function RecurringExpensesScreen() {
               <TextInput
                 style={styles.input}
                 placeholder="0.00"
-                placeholderTextColor="#999"
+                placeholderTextColor="#555"
                 value={formData.amount}
                 onChangeText={(text) => setFormData(prev => ({ ...prev, amount: text }))}
                 keyboardType="decimal-pad"
@@ -295,7 +295,7 @@ export default function RecurringExpensesScreen() {
             <TextInput
               style={styles.descriptionInput}
               placeholder="e.g., Rent, Netflix subscription"
-              placeholderTextColor="#999"
+              placeholderTextColor="#555"
               value={formData.description}
               onChangeText={(text) => setFormData(prev => ({ ...prev, description: text }))}
             />

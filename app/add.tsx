@@ -135,7 +135,7 @@ export default function AddExpenseScreen() {
               <TextInput
                 style={styles.amountInput}
                 placeholder="0.00"
-                placeholderTextColor="#999"
+                placeholderTextColor="#555"
                 value={amount}
                 onChangeText={setAmount}
                 keyboardType="decimal-pad"

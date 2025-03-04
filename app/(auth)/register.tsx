@@ -5,6 +5,8 @@ import { Link, router } from 'expo-router';
 import { supabase } from '@/lib/supabase';
 import { Lock, Mail, User } from 'lucide-react-native';
 import { useAuthStore } from '@/stores/authStore';
+import { globalStyles } from '@/styles/globalStyles';
+import { spacing } from '@/styles/theme';
 
 export default function RegisterScreen() {
   const [name, setName] = useState('');
@@ -103,32 +105,32 @@ export default function RegisterScreen() {
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.formContainer}>
-        <Text style={styles.title}>Create Account</Text>
-        <Text style={styles.subtitle}>Sign up to get started</Text>
+    <View style={globalStyles.authContainer}>
+      <View style={globalStyles.card}>
+        <Text style={globalStyles.title}>Create Account</Text>
+        <Text style={globalStyles.subtitle}>Sign up for a new account</Text>
 
-        {error && <View style={styles.errorContainer}>
-          <Text style={styles.errorText}>{error}</Text>
+        {error && <View style={globalStyles.errorContainer}>
+          <Text style={globalStyles.errorText}>{error}</Text>
         </View>}
 
-        <View style={styles.inputContainer}>
-          <User size={20} color="#666" style={styles.inputIcon} />
+        <View style={globalStyles.inputContainer}>
+          <User size={20} color="#666" style={{ marginRight: spacing.sm }} />
           <TextInput
-            style={styles.input}
+            style={globalStyles.input}
             placeholder="Full Name"
-            placeholderTextColor="#666"
+            placeholderTextColor="#555"
             value={name}
             onChangeText={setName}
           />
         </View>
 
-        <View style={styles.inputContainer}>
-          <Mail size={20} color="#666" style={styles.inputIcon} />
+        <View style={globalStyles.inputContainer}>
+          <Mail size={20} color="#666" style={{ marginRight: spacing.sm }} />
           <TextInput
-            style={styles.input}
+            style={globalStyles.input}
             placeholder="Email"
-            placeholderTextColor="#666"
+            placeholderTextColor="#555"
             value={email}
             onChangeText={setEmail}
             autoCapitalize="none"
@@ -136,12 +138,12 @@ export default function RegisterScreen() {
           />
         </View>
 
-        <View style={styles.inputContainer}>
-          <Lock size={20} color="#666" style={styles.inputIcon} />
+        <View style={globalStyles.inputContainer}>
+          <Lock size={20} color="#666" style={{ marginRight: spacing.sm }} />
           <TextInput
-            style={styles.input}
+            style={globalStyles.input}
             placeholder="Password"
-            placeholderTextColor="#666"
+            placeholderTextColor="#555"
             value={password}
             onChangeText={setPassword}
             secureTextEntry
@@ -149,117 +151,20 @@ export default function RegisterScreen() {
         </View>
 
         <TouchableOpacity
-          style={styles.button}
+          style={[globalStyles.button, loading && { opacity: 0.7 }]}
           onPress={handleRegister}
           disabled={loading}
         >
-          {loading ? (
-            <ActivityIndicator color="#fff" />
-          ) : (
-            <Text style={styles.buttonText}>Create Account</Text>
-          )}
+          <Text style={globalStyles.buttonText}>
+            {loading ? 'Creating account...' : 'Create account'}
+          </Text>
         </TouchableOpacity>
+      </View>
 
-        <View style={styles.footer}>
-          <Text style={styles.footerText}>Already have an account? </Text>
-          <Link href="/login" asChild>
-            <TouchableOpacity>
-              <Text style={styles.footerLink}>Sign In</Text>
-            </TouchableOpacity>
-          </Link>
-        </View>
+      <View style={globalStyles.footer}>
+        <Text style={globalStyles.footerText}>Already have an account? </Text>
+        <Link href="/login" style={globalStyles.footerLink}>Sign in</Link>
       </View>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#f9f9f9',
-    justifyContent: 'center',
-    padding: 16,
-    paddingBottom: Platform.OS === 'ios' ? 40 : 20,
-  },
-  formContainer: {
-    backgroundColor: '#fff',
-    borderRadius: 10,
-    padding: 20,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 10,
-    elevation: 5,
-    marginTop: Platform.OS === 'ios' ? -40 : -20,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#333',
-    marginBottom: 8,
-    textAlign: 'center',
-  },
-  subtitle: {
-    fontSize: 16,
-    color: '#666',
-    marginBottom: 24,
-    textAlign: 'center',
-  },
-  inputContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: '#ddd',
-    borderRadius: 8,
-    marginBottom: 12,
-    paddingHorizontal: 12,
-    height: 46,
-  },
-  inputIcon: {
-    marginRight: 10,
-  },
-  input: {
-    flex: 1,
-    height: 46,
-    fontSize: 16,
-    color: '#333',
-  },
-  button: {
-    backgroundColor: '#4A6FFF',
-    borderRadius: 8,
-    height: 46,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 8,
-  },
-  buttonText: {
-    color: '#fff',
-    fontSize: 16,
-    fontWeight: '600',
-  },
-  footer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    marginTop: 20,
-  },
-  footerText: {
-    color: '#666',
-    fontSize: 14,
-  },
-  footerLink: {
-    color: '#4A6FFF',
-    fontSize: 14,
-    fontWeight: '600',
-  },
-  errorContainer: {
-    backgroundColor: '#ffebee',
-    padding: 12,
-    borderRadius: 8,
-    marginBottom: 16,
-  },
-  errorText: {
-    color: '#c62828',
-    fontSize: 14,
-    textAlign: 'center',
-  },
-});

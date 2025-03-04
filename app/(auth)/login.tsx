@@ -6,6 +6,8 @@ import { Lock, Mail } from 'lucide-react-native';
 import React from 'react';
 import { UserService } from '@/services/UserService';
 import { useAuthStore } from '@/stores/authStore';
+import { globalStyles } from '@/styles/globalStyles';
+import { spacing } from '@/styles/theme';
 
 export default function LoginScreen() {
   const [email, setEmail] = useState('');
@@ -103,21 +105,21 @@ export default function LoginScreen() {
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.formContainer}>
-        <Text style={styles.title}>Budget Tracker</Text>
-        <Text style={styles.subtitle}>Sign in to your account</Text>
+    <View style={globalStyles.authContainer}>
+      <View style={globalStyles.card}>
+        <Text style={globalStyles.title}>Budget Tracker</Text>
+        <Text style={globalStyles.subtitle}>Sign in to your account</Text>
 
-        {error && <View style={styles.errorContainer}>
-          <Text style={styles.errorText}>{error}</Text>
+        {error && <View style={globalStyles.errorContainer}>
+          <Text style={globalStyles.errorText}>{error}</Text>
         </View>}
 
-        <View style={styles.inputContainer}>
-          <Mail size={20} color="#666" style={styles.inputIcon} />
+        <View style={globalStyles.inputContainer}>
+          <Mail size={20} color="#666" style={{ marginRight: spacing.sm }} />
           <TextInput
-            style={styles.input}
+            style={globalStyles.input}
             placeholder="Email"
-            placeholderTextColor="#666"
+            placeholderTextColor="#555"
             value={email}
             onChangeText={setEmail}
             autoCapitalize="none"
@@ -125,12 +127,12 @@ export default function LoginScreen() {
           />
         </View>
 
-        <View style={styles.inputContainer}>
-          <Lock size={20} color="#666" style={styles.inputIcon} />
+        <View style={globalStyles.inputContainer}>
+          <Lock size={20} color="#666" style={{ marginRight: spacing.sm }} />
           <TextInput
-            style={styles.input}
+            style={globalStyles.input}
             placeholder="Password"
-            placeholderTextColor="#666"
+            placeholderTextColor="#555"
             value={password}
             onChangeText={setPassword}
             secureTextEntry
@@ -138,25 +140,19 @@ export default function LoginScreen() {
         </View>
 
         <TouchableOpacity
-          style={styles.button}
+          style={[globalStyles.button, loading && { opacity: 0.7 }]}
           onPress={handleLogin}
           disabled={loading}
         >
-          {loading ? (
-            <ActivityIndicator color="#fff" />
-          ) : (
-            <Text style={styles.buttonText}>Sign In</Text>
-          )}
+          <Text style={globalStyles.buttonText}>
+            {loading ? 'Signing in...' : 'Sign in'}
+          </Text>
         </TouchableOpacity>
+      </View>
 
-        <View style={styles.footer}>
-          <Text style={styles.footerText}>Don't have an account? </Text>
-          <Link href="/register" asChild>
-            <TouchableOpacity>
-              <Text style={styles.footerLink}>Sign Up</Text>
-            </TouchableOpacity>
-          </Link>
-        </View>
+      <View style={globalStyles.footer}>
+        <Text style={globalStyles.footerText}>Don't have an account? </Text>
+        <Link href="/register" style={globalStyles.footerLink}>Sign up</Link>
       </View>
     </View>
   );
