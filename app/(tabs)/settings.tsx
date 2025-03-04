@@ -8,9 +8,14 @@ import { UserService } from '@/services/UserService';
 import { BudgetService } from '@/services/BudgetService';
 import { Bell, CreditCard, DollarSign, CircleHelp as HelpCircle, LogOut, Moon, Pencil, Shield, User as UserIcon } from 'lucide-react-native';
 
+interface UserProfile {
+  name: string;
+  // add other user properties as needed
+}
+
 export default function SettingsScreen() {
   const { session, setSession } = useAuthStore();
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState<UserProfile | null>(null);
   const [darkMode, setDarkMode] = useState(false);
   const [notifications, setNotifications] = useState(true);
 
@@ -66,7 +71,7 @@ export default function SettingsScreen() {
     }
   };
 
-  const renderSettingItem = (icon, title, onPress = null, rightElement = null) => (
+  const renderSettingItem = (icon: any, title: any, onPress: any = null, rightElement: any = null) => (
     <TouchableOpacity 
       style={styles.settingItem} 
       onPress={onPress}
@@ -171,6 +176,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#f9f9f9',
+    paddingBottom: 80,
   },
   scrollView: {
     flex: 1,

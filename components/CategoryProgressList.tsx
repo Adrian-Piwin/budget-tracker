@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     padding: 16,
     marginRight: 12,
-    width: 200,
+    width: 240,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.05,
@@ -116,6 +116,7 @@ const styles = StyleSheet.create({
   progressContainer: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'space-between',
   },
   progressBar: {
     flex: 1,
@@ -136,14 +137,16 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '600',
     color: '#4A6FFF',
-    width: 40,
+    minWidth: 50,
     textAlign: 'right',
+    flexShrink: 0,
+    flexWrap: 'nowrap',
   },
   percentageTextOverBudget: {
     color: '#FF3B30',
   },
   emptyContainer: {
-    width: 200,
+    width: 240,
     height: 100,
     backgroundColor: '#fff',
     borderRadius: 12,

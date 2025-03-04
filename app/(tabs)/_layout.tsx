@@ -56,9 +56,22 @@ export default function TabLayout() {
         tabBarStyle: {
           borderTopWidth: 1,
           borderTopColor: '#E5E5EA',
-          height: 60,
+          height: 80,
           paddingBottom: 8,
           paddingTop: 8,
+          position: 'absolute',
+          bottom: 0,
+          left: 10,
+          right: 10,
+          borderRadius: 15,
+          shadowColor: '#000',
+          shadowOffset: {
+            width: 0,
+            height: 4,
+          },
+          shadowOpacity: 0.1,
+          shadowRadius: 8,
+          elevation: 5,
         },
         headerShown: false,
       }}
